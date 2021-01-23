@@ -1,52 +1,72 @@
 package com.company;
 
-class Shop {
+import java.util.Hashtable;
+import java.util.List;
+
+interface Basket {
+
+    void addProduct(String name, int quantity);
+    Integer removeProduct(String name);
+    void updateProductQuantity(String name, int quantity);
+    void clear();
+    List<String> getProducts();
+    int getProductQuantity(String name);
+}
+
+class Shop implements Basket{
     /*
      *  Class serves to work with products
      */
 
-    private String product;
-    private int quantity;
+    Hashtable<String, Integer> ht1;
 
-    public Shop(String product, int quantity) {
-        this.setProduct(product);
-        this.setQuantity(quantity);
+    public Shop() {
+
+        ht1 = new Hashtable<>(5);
+        ht1.put("soap", 8);
+        ht1.put("brush", 4);
+        ht1.put("toothpaste", 17);
+        ht1.put("towel", 5);
     }
 
-    public String getProduct() {
-        return product;
+    public int getProductQuantity(String name) {
+        return ht1.get(name);
     }
 
-    public void setProduct(String product) {
-        this.product = product;
+    public Integer removeProduct(String name) {
+        return ht1.remove(name);
     }
 
-    public int getQuantity(String product) {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void clear() {
+        ht1.clear();
     }
 
     @Override
-    public String toString() {
-        return product + " " + quantity;
+    public List<String> getProducts() {
+        return null;
+    }
+
+    public void addProduct(String name, int quantity) {
+    }
+
+    public void updateProductQuantity(String name, int quantity) {
     }
 }
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main (String args[]) {
 
-        Shop[] s = new Shop[4];
-        s[0] = new Shop("soap", 8);
-        s[1] = new Shop("brush", 4);
-        s[2] = new Shop("toothpaste", 17);
-        s[3] = new Shop("towel", 5);
+        Shop s = new Shop();
 
-        System.out.println("Get product Quantity: " + s[0].getQuantity("soap"));
-        System.out.println("Get products: " + s[3]);
-
+        System.out.println("Get product quantity: " + s.getProductQuantity("soap"));
+        System.out.println("Current basket: " + s.ht1);
+        System.out.println("Remove product: " + s.removeProduct("soap"));
+        System.out.println("Current basket without soap: " + s.ht1);
+        s.ht1.put("comb", 1);
+        System.out.println("Current basket with comb: " + s.ht1);
+        System.out.println("Clear products ------- ");
+        s.clear();
+        System.out.println("Clear basket: " + s.ht1);
     }
 }
