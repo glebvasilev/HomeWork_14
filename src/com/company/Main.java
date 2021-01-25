@@ -57,10 +57,10 @@ public class Main {
 
         Shop s = new Shop();
 
-        s.ht1.put("soap", 8);
-        s.ht1.put("brush", 4);
-        s.ht1.put("toothpaste", 17);
-        s.ht1.put("towel", 5);
+        s.addProduct("soap", 8);
+        s.addProduct("brush", 4);
+        s.addProduct("toothpaste", 17);
+        s.addProduct("towel", 5);
 
         System.out.println("Get product quantity: " + s.getProductQuantity("soap"));
         System.out.println("Current basket: " + s.ht1);
