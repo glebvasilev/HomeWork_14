@@ -1,8 +1,6 @@
 package com.company;
 
-import java.util.Collections;
-import java.util.Hashtable;
-import java.util.List;
+import java.util.*;
 
 interface Basket {
 
@@ -63,16 +61,15 @@ public class Main {
         s.addProduct("toothpaste", 17);
         s.addProduct("towel", 5);
 
-        System.out.println("Get product quantity: " + s.getProductQuantity("soap"));
         System.out.println("Current basket: " + s.getProducts());
+        System.out.println("Get product soap quantity: " + s.getProductQuantity("soap"));
         System.out.println("Remove product: " + s.removeProduct("soap"));
         System.out.println("Current basket without soap: " + s.getProducts());
         s.addProduct("comb", 1);
         System.out.println("Current basket with comb: " + s.getProducts());
         System.out.println("Get product comb quantity: " + s.getProductQuantity("comb"));
         s.updateProductQuantity("comb", 2);
-        System.out.println("Current basket with new comb: " + s.getProducts());
-        System.out.println("Get product comb quantity: " + s.getProductQuantity("comb"));
+        System.out.println("Updated product comb quantity: " + s.getProductQuantity("comb"));
         System.out.println("Clear products ------- ");
         s.clear();
         System.out.println("Clear basket: " + s.getProducts());
