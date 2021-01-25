@@ -1,5 +1,6 @@
 package com.company;
 
+import java.util.Collections;
 import java.util.Hashtable;
 import java.util.List;
 
@@ -37,17 +38,17 @@ class Shop implements Basket{
         ht1.clear();
     }
 
-    @Override
     public List<String> getProducts() {
-        return null;
+        List<String> li = Collections.list(ht1.keys());
+        return li;
     }
 
     public void addProduct(String name, int quantity) {
-        ht1.put("comb", 1);
+        ht1.put(name, quantity);
     }
 
     public void updateProductQuantity(String name, int quantity) {
-        ht1.replace("comb", 2);
+        ht1.replace(name, quantity);
     }
 }
 
@@ -63,15 +64,17 @@ public class Main {
         s.addProduct("towel", 5);
 
         System.out.println("Get product quantity: " + s.getProductQuantity("soap"));
-        System.out.println("Current basket: " + s.ht1);
+        System.out.println("Current basket: " + s.getProducts());
         System.out.println("Remove product: " + s.removeProduct("soap"));
-        System.out.println("Current basket without soap: " + s.ht1);
+        System.out.println("Current basket without soap: " + s.getProducts());
         s.addProduct("comb", 1);
-        System.out.println("Current basket with comb: " + s.ht1);
+        System.out.println("Current basket with comb: " + s.getProducts());
+        System.out.println("Get product comb quantity: " + s.getProductQuantity("comb"));
         s.updateProductQuantity("comb", 2);
-        System.out.println("Current basket with new comb: " + s.ht1);
+        System.out.println("Current basket with new comb: " + s.getProducts());
+        System.out.println("Get product comb quantity: " + s.getProductQuantity("comb"));
         System.out.println("Clear products ------- ");
         s.clear();
-        System.out.println("Clear basket: " + s.ht1);
+        System.out.println("Clear basket: " + s.getProducts());
     }
 }
